@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список автомобилей</title>
+</head>
+<body>
+    <h1>Добавить авто</h1>
+    <form th:action="@{/cars/add}" method="post">
+        <label for="dealer">Дилер:</label>
+            <input type="text" id="dealer" name="dealer" required>
+        <label for="model">Модель:</label>
+            <input type="text" id="model" name="model" required>
+        <label for="year">Год:</label>
+            <input type="text" id="year" name="year" required>
+        <label for="price">Цена:</label>
+            <input type="text" id="price" name="price" required>
+        <button type="submit">Добавить</button>
+        </form>
+        <br>
+        <h2>Найти по модели</h2>
+        <form th:action="@{/cars/findByModel}" method="get">
+            <input type="text" id="carModel" name="carModel" required>
+            <button type="submit">Найти по модели</button>
+        </form>
+    <h1>Список автомобилей</h1>
+    <table>
+        <thead>
+            <tr>
+                <th> Selected </th>
+                <th> ID </th>
+                <th> Dealer</th>
+                <th> Model</th>
+                <th> Year</th>
+                <th> Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form th:action="@{/cars/action}" th:method="post">
+            <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+            <tr th:each = "car:${cars}">
+                <td><input type="radio" th:name="carId" th:value="${car.carId}"/></td>
+                <td th:text = "${car.carId.toString()}"></td>
+                <td th:text = "${car.dealer}"></td>
+                <td th:text = "${car.model}"></td>
+                <td th:text = "${car.year.toString()}"></td>
+                <td th:text = "${car.price.toString()}"></td>
+            </tr>
+            <button type="submit" name="action" value="select">Выбрать</button>
+        </tbody></form>
+    </table>
+    <form th:action="@{/cars/user/add}" th:method="post">
+        <input type="hidden" name="selectedCarId" th:value="${carId}"/>
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="add">Добавить авто в список желаемого</button>
+    </form>
+    <a th:href="@{/users/}" th:text="Пользователи"></a>
+</body>
+</html>

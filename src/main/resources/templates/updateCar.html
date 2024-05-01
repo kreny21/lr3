@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Обновить автомобиль</title>
+</head>
+<body>
+    <h1>Обновить автомобиль</h1>
+    <form th:action="@{/cars/update}" th:method="PATCH" th:object = "${car}">
+            <input type="hidden" required th:field="*{carId}">
+        <label for="dealer">Новый Дилер:</label>
+            <input type="text" th:field="*{dealer}">
+        <label for="model">Новая Модель:</label>
+            <input type="text" th:field="*{model}">
+            <label for="year">Новый Год выпуска:</label>
+            <input type="text" th:field="*{year}">
+            <label for="price">Новая цена:</label>
+            <input type="text" th:field="*{price}">
+        <button type="submit">Обновить</button>
+        </form>
+</form>
+</body>
+</html>

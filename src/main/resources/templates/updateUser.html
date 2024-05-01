@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Обновить пользователя</title>
+</head>
+<body>
+    <h1>Обновить пользователя</h1>
+    <form th:action="@{/users/update}" th:method="PATCH" th:object = "${user}">
+            <input type="hidden" required th:field="*{userId}">
+        <label for="email">Новый логин(Email):</label>
+            <input type="text" th:field="*{email}">
+        <label for="password">Новый пароль:</label>
+            <input type="text" th:field="*{password}">
+        <button type="submit">Обновить</button>
+        </form>
+</form>
+</body>
+</html>

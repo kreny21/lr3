@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Выбранный пользователь</title>
+</head>
+<body>
+    <h1>Пользователь</h1>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Email</th>
+                <th> Password</th>
+                <th> Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text = "${selectedUser.userId.toString()}"></td>
+                <td th:text = "${selectedUser.email}"></td>
+                <td th:text = "${selectedUser.password}"></td>
+                <td th:text = "${selectedUser.balance.toString()}"></td>
+            </tr>
+        </tbody>
+    </form>
+    </table>
+    <h1>Выберите действие</h1>
+    <form th:action="@{/users/delete}" th:method="delete">
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="delete">Удалить</button>
+    </form>
+    <form th:action="@{/users/update}" th:method="get">
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="update">Изменить</button>
+    </form>
+    <form th:action="@{/users/cars}" th:method="get">
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="show">Посмотреть список желаемого</button>
+    </form>
+    <form th:action="@{/users/deposit}" th:method="get">
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="deposit">Пополнить баланс</button>
+    </form>
+    <a th:href="@{/users/}" th:text="Вернуться"></a>
+</body>
+</html>

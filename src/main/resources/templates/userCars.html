@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список желаемого пользователя</title>
+</head>
+<body>
+    <h1>Список желаемых машин</h1>
+    <table>
+        <thead>
+            <tr>
+                <th> Selected </th>
+                <th> ID </th>
+                <th> Dealer</th>
+                <th> Model</th>
+                <th> Year</th>
+                <th> Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "car:${cars}">
+                <form th:action="@{/cars/delete/car}" th:method="delete" th:object = "${car}" >
+                    <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+                    <td><input type="radio" name="selectedCarId" th:value="${car.carId}"/></td>
+                    <td th:text = "${car.carId.toString()}"></td>
+                    <td th:text = "${car.dealer}"></td>
+                    <td th:text = "${car.model}"></td>
+                    <td th:text = "${car.year.toString()}"></td>
+                    <td th:text = "${car.price.toString()}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" name="action" value="delete">Удалить</button>
+</form>
+    <form th:action="@{/cars/}" th:method="get">
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="add">Добавить</button>
+    </form>
+    <a th:href="@{/users/}" th:text="Пользователи"></a>
+</body>
+</html>

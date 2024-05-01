@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Пополнить баланс</title>
+</head>
+<body>
+    <h1>Пополнить баланс</h1>
+    <form th:action="@{/users/update}" th:method="patch" th:object = "${user}">
+        <input type="hidden" th:field="*{userId}">
+        <input type="hidden" th:field="*{email}">
+        <input type="hidden" th:field="*{password}">
+        <label for="balance">Сумма:</label>
+        <input type="text" th:field="*{balance}">
+        <button type="submit">Пополнить</button>
+        </form>
+</form>
+</body>
+</html>

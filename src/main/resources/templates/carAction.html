@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Выбранный автомобиль</title>
+</head>
+<body>
+    <h1>Автомобиль</h1>
+    <table>
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Dealer</th>
+                <th> Model</th>
+                <th> Year</th>
+                <th> Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text = "${selectedCar.carId.toString()}"></td>
+                <td th:text = "${selectedCar.dealer}"></td>
+                <td th:text = "${selectedCar.model}"></td>
+                <td th:text = "${selectedCar.year.toString()}"></td>
+                <td th:text = "${selectedCar.price.toString()}"></td>
+            </tr>
+        </tbody>
+    </form>
+    </table>
+    <h1>Выберите действие</h1>
+    <form th:action="@{/cars/delete}" th:method="delete">
+        <input type="hidden" name="selectedCarId" th:value="${selectedCarId}"/>
+        <button type="submit" name="action" value="delete">Удалить</button>
+    </form>
+    <form th:action="@{/cars/update}" th:method="get">
+        <input type="hidden" name="selectedCarId" th:value="${selectedCarId}"/>
+        <button type="submit" name="action" value="update">Изменить</button>
+    </form>
+    <form th:action="@{/cars/user/add}" th:method="post">
+        <input type="hidden" name="selectedCarId" th:value="${selectedCarId}"/>
+        <input type="hidden" name="selectedUserId" th:value="${selectedUserId}"/>
+        <button type="submit" name="action" value="add">Добавить авто в список желаемого</button>
+    </form>
+    <a th:href="@{/cars/}" th:text="Вернуться"></a>
+</body>
+</html>
