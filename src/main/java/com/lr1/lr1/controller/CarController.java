@@ -28,12 +28,10 @@ import com.lr1.lr1.service.WishListService;
 @Controller
 public class CarController {
     private final CarService carService;
-    private final UserService userService;
     private final WishListService wishListService;
 
-    public CarController(CarService carService, UserService userService,WishListService wishListService){
+    public CarController(CarService carService,WishListService wishListService){
         this.carService = carService;
-        this.userService = userService;
         this.wishListService = wishListService;
     }
     @GetMapping("/")
